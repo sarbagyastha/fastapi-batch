@@ -12,6 +12,8 @@ uv add fastapi-batch
 
 ## Usage
 
+[Navigate to the example directory](https://github.com/sarbagyastha/fastapi-batch/tree/main/example)
+
 ```python
 @app.post("/api/v1/fruit")
 async def identify_fruit(fruit: FruitModel):
