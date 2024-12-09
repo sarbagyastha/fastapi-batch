@@ -1,0 +1,21 @@
+[project]
+name = "fastapi-batch"
+version = "0.1.0"
+description = "FastAPI dependency for batch requesting"
+readme = "README.md"
+authors = [
+    { name = "Sarbagya Dhaubanjar", email = "sarbagyastha@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "asyncer>=0.0.8",
+    "fastapi>=0.115.6",
+    "httpx>=0.28.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.workspace]
+members = ["example"]
