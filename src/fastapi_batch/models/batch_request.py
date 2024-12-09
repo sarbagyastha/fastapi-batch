@@ -1,3 +1,6 @@
+# Copyright (c) 2024 Sarbagya Dhaubanjar
+# Licensed under the MIT License. See LICENSE file for details.
+
 from typing import Annotated
 from annotated_types import MaxLen, MinLen
 from pydantic import BaseModel, Field, field_validator

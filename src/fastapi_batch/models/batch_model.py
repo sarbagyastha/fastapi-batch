@@ -1,3 +1,6 @@
+# Copyright (c) 2024 Sarbagya Dhaubanjar
+# Licensed under the MIT License. See LICENSE file for details.
+
 from typing import Any
 from urllib.parse import urlparse
 from pydantic import BaseModel, field_validator

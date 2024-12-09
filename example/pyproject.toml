@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.115.6",
-    "fastapi-batch>=0.1.0",
+    "fastapi-batch",
 ]
 
 [tool.uv.sources]

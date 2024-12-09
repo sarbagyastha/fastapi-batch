@@ -12,6 +12,9 @@ dependencies = [
     "fastapi>=0.115.6",
     "httpx>=0.28.1",
 ]
+license = "MIT"
+keywords = ["fastapi", "batch", "request", "dependency", "api"]
+
 
 [build-system]
 requires = ["hatchling"]

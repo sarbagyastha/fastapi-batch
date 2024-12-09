@@ -1,3 +1,6 @@
+# Copyright (c) 2024 Sarbagya Dhaubanjar
+# Licensed under the MIT License. See LICENSE file for details.
+
 from fastapi import Depends, FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer
