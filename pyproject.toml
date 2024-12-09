@@ -7,11 +7,6 @@ authors = [
     { name = "Sarbagya Dhaubanjar", email = "sarbagyastha@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = [
-    "asyncer>=0.0.8",
-    "fastapi>=0.115.6",
-    "httpx>=0.28.1",
-]
 license = "MIT"
 classifiers = [
     "Intended Audience :: Information Technology",
@@ -42,6 +37,12 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
+dependencies = [
+    "asyncer>=0.0.8",
+    "fastapi>=0.115.6",
+    "httpx>=0.28.1",
+]
+
 
 [project.urls]
 Homepage = "https://github.com/sarbagyastha/fastapi-batch"
