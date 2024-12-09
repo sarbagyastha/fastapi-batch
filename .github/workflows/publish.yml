@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+
 jobs:
   uv-example:
     name: python
@@ -27,5 +30,3 @@ jobs:
 
       - name: Publish
         run: uv publish
-
-      
