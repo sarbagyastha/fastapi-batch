@@ -1,10 +1,26 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI, Request
+from fastapi.responses import JSONResponse
+from fastapi.security import HTTPBearer
 
-from example.models import AnimalModel, FruitModel
+from models import AnimalModel, FruitModel
 from fastapi_batch import BatchGateway, BatchResponse
 
 
-app = FastAPI()
+class BatchBearer(HTTPBearer):
+    async def __call__(self, request: Request) -> None:
+        if request.headers.get("Authorization") != "Bearer batch-token":
+            raise ValueError("You're not authorized to access this resource.")
+
+
+app = FastAPI(dependencies=[Depends(BatchBearer())])
+
+
+@app.exception_handler(ValueError)
+async def validation_exception_handler(request: Request, exc: ValueError):
+    return JSONResponse(
+        status_code=418,
+        content={"message": exc.args[0]},
+    )
 
 
 @app.post("/api/v1/fruit")

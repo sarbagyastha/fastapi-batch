@@ -14,6 +14,7 @@ from fastapi_batch.models.batch_response import BatchResponse
 class _BatchGateway:
     async def __call__(self, batch: BatchRequest, request: Request) -> "_BatchGateway":
         self.host = f"{request.url.scheme}://{request.url.netloc}"
+        self.__headers = request.headers
         self.__requests = batch.requests
         self.__include_response_headers = batch.include_response_headers
         return self
@@ -41,22 +42,27 @@ class _BatchGateway:
         include_response_headers: bool,
         request: RequestBatchModel,
     ) -> ResponseBatchModel:
-        print(f"{self.host}{request.url}")
+        request_headers: dict[str, str] = {
+            **self.__headers,
+            **(request.headers or {}),
+        }
+        request_headers.pop("content-length")
+
         response = await client.request(
             url=f"{self.host}{request.url}",
             method=request.method,
-            headers=request.headers,
+            headers=request_headers,
             json=request.body,
         )
 
-        headers = (
+        response_headers = (
             {k: v for k, v in response.headers.items()}
             if include_response_headers
             else None
         )
 
         return ResponseBatchModel(
-            headers=headers,
+            headers=response_headers,
             body=response.json(),
             status_code=response.status_code,
         )
