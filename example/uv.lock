@@ -114,16 +114,19 @@ standard = [
 
 [[package]]
 name = "fastapi-batch"
-version = "0.1.0"
-source = { registry = "https://pypi.org/simple" }
+version = "1.0.0"
+source = { directory = "../" }
 dependencies = [
     { name = "asyncer" },
     { name = "fastapi" },
     { name = "httpx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d6/2b/80510365704b8dfdc4b6057b7c1e08fb0e9c06c4cee4fca8f31eae7b8670/fastapi_batch-0.1.0.tar.gz", hash = "sha256:cf383908bfcbc1b1c614cdd076c8825c8a8bd1a0de35b04b2c0fed83b673d169", size = 11606 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e1/fa/34083fac3d30837098f5ac1e90c09e1c7091099ede601fd87bb3dda4a034/fastapi_batch-0.1.0-py3-none-any.whl", hash = "sha256:ed2fb5e808c4e8b4371cd408b135865f11ea1e1fba43534de7eff6e21f8d86fe", size = 7510 },
+
+[package.metadata]
+requires-dist = [
+    { name = "asyncer", specifier = ">=0.0.8" },
+    { name = "fastapi", specifier = ">=0.115.6" },
+    { name = "httpx", specifier = ">=0.28.1" },
 ]
 
 [[package]]
@@ -138,7 +141,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.6" },
-    { name = "fastapi-batch", specifier = ">=0.1.0" },
+    { name = "fastapi-batch", directory = "../" },
 ]
 
 [[package]]

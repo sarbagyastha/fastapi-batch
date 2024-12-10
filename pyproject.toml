@@ -1,6 +1,6 @@
 [project]
 name = "fastapi-batch"
-version = "1.0.0"
+version = "1.0.1"
 description = "FastAPI dependency for batch requesting"
 readme = "README.md"
 authors = [

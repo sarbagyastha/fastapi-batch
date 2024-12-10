@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Sarbagya Dhaubanjar
 # Licensed under the MIT License. See LICENSE file for details.
 
-from typing import Annotated
+from typing import Annotated, cast
 from fastapi_batch.models import (
     BatchRequest,
     RequestBatchModel,
@@ -16,8 +16,8 @@ from fastapi_batch.models.batch_response import BatchResponse
 
 class _BatchGateway:
     async def __call__(self, batch: BatchRequest, request: Request) -> "_BatchGateway":
-        self.host = f"{request.url.scheme}://{request.url.netloc}"
-        self.__headers = request.headers
+        self.request = request
+        self.base_url = self.__build_base_url()
         self.__requests = batch.requests
         self.__include_response_headers = batch.include_response_headers
         return self
@@ -46,13 +46,13 @@ class _BatchGateway:
         request: RequestBatchModel,
     ) -> ResponseBatchModel:
         request_headers: dict[str, str] = {
-            **self.__headers,
+            **self.request.headers,
             **(request.headers or {}),
         }
         request_headers.pop("content-length")
 
         response = await client.request(
-            url=f"{self.host}{request.url}",
+            url=f"{self.base_url}{request.url}",
             method=request.method,
             headers=request_headers,
             json=request.body,
@@ -69,6 +69,13 @@ class _BatchGateway:
             body=response.json(),
             status_code=response.status_code,
         )
+
+    def __build_base_url(self) -> str:
+        scope = self.request.scope
+
+        scheme = scope.get("scheme", "http")
+        host, port = cast(tuple[str, int], scope.get("server", ("", 0)))
+        return f"{scheme}://{host}:{port}"
 
 
 BatchGateway = Annotated[_BatchGateway, Depends(_BatchGateway())]

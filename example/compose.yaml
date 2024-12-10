@@ -1,0 +1,10 @@
+name: fastapi-batch
+
+services:
+  app:
+    container_name: fastapi-batch
+    build:
+      context: ../
+      dockerfile: example/Dockerfile
+    ports:
+      - 3456:8000

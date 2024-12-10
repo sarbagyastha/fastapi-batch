@@ -12,4 +12,4 @@ dependencies = [
 
 
 [tool.uv.sources]
-fastapi-batch = { path = "src/fastapi_batch" }
+fastapi-batch = { path = "../" }
