@@ -1,20 +1,50 @@
-# FastAPI Batch
+# FastAPI Batch 🌟
 
-FastAPI Batch is a Python library that allows you to batch multiple requests into a single request. It is built on top of FastAPI and Pydantic.
+FastAPI Batch is a Python library that simplifies batching multiple API requests into a single request. Built on top of FastAPI and Pydantic, it empowers developers to optimize API interactions while maintaining flexibility and performance.
 
 
-## Installation
+## Installation 🚀
+
+You can install FastAPI Batch using one of the following methods:
+
+#### Using UV
 
 ```bash
 uv add fastapi-batch
 ```
 
+#### Using Poetry
 
-## Usage
+```bash
+poetry add fastapi-batch
+```
 
-[Navigate to the example directory](https://github.com/sarbagyastha/fastapi-batch/tree/main/example)
+#### Using Pip
+
+```bash
+pip install fastapi-batch
+```
+
+
+## Features ✨
+- **Batch API Requests** 📦: Combine multiple API calls into a single request to reduce overhead.  
+- **Parallel Request Execution** ⚡: Automatically execute batched requests in parallel for better performance.  
+- **Customizable Headers** 📝: Override or define custom headers for individual requests in a batch.  
+- **Lightweight & Flexible** 🪶: Easily integrates with existing FastAPI applications.  
+- **Seamless Response Handling** 💨: Structured responses for each request in the batch.  
+
+
+## Quick Start 🛠
+
+Here’s how to set up FastAPI Batch in your project:
+
+### Example Usage
+
+Define your API endpoints:
 
 ```python
+from fastapi_batch import BatchGateway, BatchResponse
+
 @app.post("/api/v1/fruit")
 async def identify_fruit(fruit: FruitModel):
     return {
@@ -32,7 +62,11 @@ async def batch_endpoint(gateway: BatchGateway) -> BatchResponse:
     return await gateway.execute()
 ```
 
-#### Request
+
+#### Sample Batch Request
+
+Send multiple requests to the /api/v1/batch endpoint in a single payload. You can override headers or customize them for individual requests:
+
 ```json
 {
   "requests": {
@@ -40,9 +74,6 @@ async def batch_endpoint(gateway: BatchGateway) -> BatchResponse:
       "body": {
         "name": "Mango",
         "poisonous": false
-      },
-      "headers": {
-        "content-type": "application/json"
       },
       "method": "POST",
       "url": "/api/v1/fruit"
@@ -62,7 +93,10 @@ async def batch_endpoint(gateway: BatchGateway) -> BatchResponse:
 }
 ```
 
-### Response
+#### Batch Response
+
+Receive individual responses for all requests in a structured format:
+
 ```json
 {
   "responses": {
@@ -82,11 +116,23 @@ async def batch_endpoint(gateway: BatchGateway) -> BatchResponse:
 }
 ```
 
-## License
-Copyright 2024 Sarbagya Dhaubanjar
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+## 📖 Full Example
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+Explore the [example directory](https://github.com/sarbagyastha/fastapi-batch/tree/main/example) for a complete demonstration of FastAPI Batch in action.
 
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Contributions 🤝
+We welcome contributions to enhance FastAPI Batch! Feel free to:
+- Open issues and feature requests.
+- Submit pull requests with your improvements.
+
+Let’s build something amazing together! 🎉
+
+
+## License 📜
+FastAPI Batch is open source and available under the [MIT License](https://github.com/sarbagyastha/fastapi-batch/blob/main/LICENSE.md).
+
+---
+
+Enjoy faster, cleaner, and more efficient API interactions with FastAPI Batch! 🐍🚀

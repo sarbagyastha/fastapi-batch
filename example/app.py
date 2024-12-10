@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Sarbagya Dhaubanjar
 # Licensed under the MIT License. See LICENSE file for details.
 
-from fastapi import Depends, FastAPI, Request
+from fastapi import Depends, FastAPI, Request, status
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer
 
@@ -15,13 +15,22 @@ class BatchBearer(HTTPBearer):
             raise ValueError("You're not authorized to access this resource.")
 
 
-app = FastAPI(dependencies=[Depends(BatchBearer())])
+app = FastAPI(
+    title="FastAPI Batch Example",
+    description="An example of FastAPI Batch",
+    swagger_ui_parameters={
+        "persistAuthorization": True,
+        "tryItOutEnabled": True,
+        "syntaxHighlight.theme": "obsidian",
+    },
+    dependencies=[Depends(BatchBearer())],
+)
 
 
 @app.exception_handler(ValueError)
 async def validation_exception_handler(request: Request, exc: ValueError):
     return JSONResponse(
-        status_code=418,
+        status_code=status.HTTP_401_UNAUTHORIZED,
         content={"message": exc.args[0]},
     )
 
@@ -40,6 +49,6 @@ async def identify_animal(animal: AnimalModel):
     }
 
 
-@app.post("/api/v1/batch", response_model_exclude_defaults=True)
+@app.post("/api/v1/batch", summary="Batch API", response_model_exclude_defaults=True)
 async def batch_endpoint(gateway: BatchGateway) -> BatchResponse:
     return await gateway.execute()
