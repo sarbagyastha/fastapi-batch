@@ -1,6 +1,6 @@
 [project]
 name = "fastapi-batch"
-version = "0.1.0"
+version = "1.0.0"
 description = "FastAPI dependency for batch requesting"
 readme = "README.md"
 authors = [
@@ -20,7 +20,6 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development",
     "Typing :: Typed",
-    "Development Status :: 4 - Beta",
     "Environment :: Web Environment",
     "Framework :: AsyncIO",
     "Framework :: FastAPI",
@@ -34,6 +33,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]

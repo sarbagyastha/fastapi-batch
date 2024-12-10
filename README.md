@@ -2,6 +2,10 @@
 
 FastAPI Batch is a Python library that simplifies batching multiple API requests into a single request. Built on top of FastAPI and Pydantic, it empowers developers to optimize API interactions while maintaining flexibility and performance.
 
+## Motivation 💡
+
+In modern web development, making multiple independent API requests can lead to higher overhead, increased latency, and slower overall performance. **FastAPI Batch** was created to address these issues by enabling developers to group multiple requests into a single batch request. This reduces the number of round trips between the client and server, optimizing performance by executing requests in parallel, and improving the user experience.
+
 
 ## Installation 🚀
 
